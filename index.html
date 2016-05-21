@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Daan Vanden Bosch</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: hsl(230, 10%, 30%);
+            color: #202050;
+        }
+
+        #main-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        #name {
+            color: hsl(230, 10%, 20%);
+            font-size: 90pt;
+            font-family: sans-serif;
+            letter-spacing: 0.5em;
+            animation: rotate 20s ease 2s infinite;
+        }
+
+        #name span {
+            display: inline-block;
+            animation: rotate 10s ease 2s infinite reverse;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0turn);
+            }
+            to {
+                transform: rotate(1turn);
+            }
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div id="main-container">
+        <div id="name">
+            <span>D</span><span>a</span><span>a</span><span>n</span>
+        </div>
+    </div>
+</div>
+</body>
+</html>
