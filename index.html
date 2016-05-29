@@ -7,8 +7,12 @@
             margin: 0;
             background-color: hsl(0, 0%, 95%);
             color: hsl(0, 0%, 30%);
-            font-family: sans-serif;
+            font-family: Verdana, Geneva, sans-serif;
             font-size: 17px;
+        }
+
+        h1, h2 {
+            font-weight: normal;
         }
 
         #main-container {
@@ -21,29 +25,49 @@
             background-color: hsl(0, 40%, 50%);
             display: flex;
             flex-direction: column;
-            width: 120px;
+            width: 30%;
+            min-width: 120px;
+        }
+
+        #sidebar-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 30%;
+            min-width: 120px;
+        }
+
+        @media screen and (max-width: 1200px) {
+            #sidebar, #sidebar-fixed {
+                width: 120px;
+            }
         }
 
         #sidebar-header {
+            position: absolute;
             display: block;
-            position: fixed;
             box-sizing: border-box;
             top: 0;
+            right: 0;
             width: 120px;
             padding: 20px;
             color: hsl(0, 40%, 20%);
             text-decoration: none;
+            text-align: right;
         }
 
         #sidebar-header h1 {
             margin: 0;
+            font-family: Lucida Console, Monaco, monospace;
             font-size: 1.2em;
         }
 
         #sidebar-content {
-            position: fixed;
+            position: absolute;
             box-sizing: border-box;
             bottom: 100px;
+            right: 0;
             width: 120px;
             padding: 20px;
             text-align: center;
@@ -74,7 +98,6 @@
 
         #header-title {
             font-size: 2em;
-            font-weight: bold;
         }
 
         #header-headline {
@@ -105,16 +128,18 @@
 <body>
 <div id="main-container">
     <nav id="sidebar">
-        <a id="sidebar-header" href="/">
-            <h1>
-                Daan<br>
-                Vanden Bosch
-            </h1>
-        </a>
-        <div id="sidebar-content">
-            <div class="sidebar-title">Contact</div>
-            <div>
-                <a href="https://www.linkedin.com/in/daan-vanden-bosch-151395121" rel="nofollow">LinkedIn</a>
+        <div id="sidebar-fixed">
+            <a id="sidebar-header" href="/">
+                <h1>
+                    Daan<br>
+                    Vanden Bosch
+                </h1>
+            </a>
+            <div id="sidebar-content">
+                <div class="sidebar-title">Contact</div>
+                <div>
+                    <a href="https://www.linkedin.com/in/daan-vanden-bosch-151395121" rel="nofollow">LinkedIn</a>
+                </div>
             </div>
         </div>
     </nav>
