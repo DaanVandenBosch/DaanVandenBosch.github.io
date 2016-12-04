@@ -1,11 +1,8 @@
 const file_input = document.getElementById('file');
 const test_el = document.getElementById('data-hex-table');
 var start_el = document.getElementById('start');
-start_el.value = (location.search.match(/start=(\d+)/) || [null, 0])[1];
 var end_el = document.getElementById('end');
-end_el.value = (location.search.match(/end=(\d+)/) || [])[1];
 var pattern_el = document.getElementById('pattern');
-pattern_el.value = (location.search.match(/pattern=([^?&=#]+)/) || [null, 'f32:x, f32:y'])[1];
 const canvas_el = document.getElementById('canvas');
 const ctx = canvas_el.getContext('2d');
 let dv;
@@ -121,8 +118,10 @@ function match_u8s_to_string(result) {
 
 function read_binary(hex = true) {
     let html = '';
-    const start = parseInt(start_el.value) || 0;
-    const end = parseInt(end_el.value) || dv && dv.byteLength || 0;
+    let start = parseInt(start_el.value) || 0;
+    if (start < 0) start = dv && dv.byteLength + start;
+    let end = parseInt(end_el.value) || dv && dv.byteLength || 0;
+    if (end < 0) end = dv && dv.byteLength + end;
     const matcher = new PatternMatcher(dv && new DataView(dv.buffer, start, end - start), pattern_el.value);
     pattern_el.value = matcher.pretty_pattern;
 
@@ -228,6 +227,13 @@ function read_binary(hex = true) {
 
 // Initialization
 
+function init_parameters() {
+    start_el.value = (location.search.match(/start=(-?\d+)/) || [null, 0])[1];
+    end_el.value = (location.search.match(/end=(-?\d+)/) || [null, ''])[1];
+    pattern_el.value = (location.search.match(/pattern=([^?&=#]+)/) || [null, 'f32:x, f32:y'])[1];
+    read_binary();
+}
+
 [start_el, end_el, pattern_el].forEach(el => el.addEventListener('change', () => {
     let loc = location.pathname;
     let sep = '?';
@@ -258,6 +264,8 @@ file_input.addEventListener('change', () => {
     });
 });
 
+init_parameters();
 resize_canvas();
 
+window.addEventListener('popstate', init_parameters);
 window.addEventListener('resize', resize_canvas);
