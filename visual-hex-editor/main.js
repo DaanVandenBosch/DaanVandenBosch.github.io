@@ -106,7 +106,7 @@ function match_value_to_string(result) {
     } else {
         switch (result.type) {
             case 'f':
-                const abs = Math.abs();
+                const abs = Math.abs(v);
                 return abs > 10000 ? v.toExponential(2) : v.toFixed(2);
             case 'i':
             case 'u':
