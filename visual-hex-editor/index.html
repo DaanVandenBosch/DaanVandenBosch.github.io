@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: monospace;
+            font-size: 1.1em;
+            background-color: #111;
+            color: hsl(180, 70%, 80%);
+        }
+        
+        td {
+            padding: 0 10px;
+            text-align: right;
+        }
+        
+        a {
+            color: cyan;
+        }
+        
+        a:hover {
+            color: hsl(180, 100%, 90%);
+        }
+        
+        input[type="number"],
+        input[type="text"] {
+            background-color: black;
+            border: solid 1px #333;
+            color: white;
+            padding: 3px 6px;
+        }
+        
+        input[type="number"] {
+            width: 100px;
+        }
+
+        label {
+            white-space: nowrap;
+        }
+        
+        #main-container {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        #header {
+            padding: 10px 10px 5px 10px;
+            text-align: center;
+        }
+        
+        .header-left {
+            float: left;
+            margin-left: 10px;
+        }
+        
+        .header-right {
+            float: right;
+            margin-right: 10px;
+        }
+        
+        @media (max-width: 1400px) {
+            .header-left,
+            .header-right {
+                margin-bottom: 10px;
+            }
+            #controls {
+                clear: both;
+            }
+        }
+        
+        #pattern {
+            width: 300px;
+        }
+        
+        #data-container {
+            flex: 1;
+            display: flex;
+            flex-direction: row;
+        }
+        
+        @media (max-width: 1300px) {
+            #data-container {
+                flex-direction: column;
+            }
+        }
+        
+        #data-hex {
+            overflow: auto;
+            flex: 1;
+        }
+        
+        #data-hex-table {
+            width: 100%;
+        }
+        
+        .data-value {
+            color: hsl(165, 75%, 60%);
+        }
+        
+        .data-u8s-hex {
+            text-align: left;
+            color: hsl(105, 75%, 60%);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="main-container">
+        <div id="header">
+            <span class="header-left">
+                VISUAL HEX EDITOR
+            </span>
+            <span class="header-right">
+                By
+                <a href="https://www.daanvandenbosch.com/" target="_blank">
+                    Daan Vanden Bosch
+                </a>
+            </span>
+            <div id="controls">
+                <input type="file" id="file">
+                <label>Start: <input id="start" type="number"></label>
+                <label>End: <input id="end" type="number"></label>
+                <label>Pattern: <input id="pattern" type="text"></label>
+            </div>
+        </div>
+        <div id="data-container">
+            <canvas id="canvas"></canvas>
+            <div id="data-hex">
+                <table id="data-hex-table"></table>
+            </div>
+        </div>
+    </div>
+
+    <script src="pso.js"></script>
+</body>
+
+</html>
