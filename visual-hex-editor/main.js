@@ -99,16 +99,18 @@ function zero_pad(x, length) {
 }
 
 function match_value_to_string(result) {
-    if (result.value === null) {
+    const v = result.value;
+
+    if (v === null) {
         return '';
     } else {
         switch (result.type) {
             case 'f':
-                const abs = Math.abs(result.value);
-                return abs > 10000 ? abs.toExponential(2) : abs.toFixed(2);
+                const abs = Math.abs();
+                return abs > 10000 ? v.toExponential(2) : v.toFixed(2);
             case 'i':
             case 'u':
-                return String(result.value);
+                return String(v);
         }
     }
 }
